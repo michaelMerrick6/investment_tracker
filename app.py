@@ -7,7 +7,14 @@ from enum import Enum
 from typing import List, Dict
 
 import pandas as pd
-import plotly.graph_objects as go
+# --- bootstrap missing packages on Streamlit Cloud (safety net) ---
+try:
+    import plotly.graph_objects as go  # noqa: F401
+except ModuleNotFoundError:
+    import subprocess, sys
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "plotly==5.22.0"])
+    import plotly.graph_objects as go
+
 import streamlit as st
 
 # ---------- Types & constants ----------
